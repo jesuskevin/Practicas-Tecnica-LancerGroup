@@ -2,6 +2,10 @@
 
 namespace Config;
 
+use App\Controllers\Author;
+use App\Controllers\Book;
+use App\Controllers\Home;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -29,7 +33,11 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', [Home::class, 'index']);
+$routes->get('/autores', [Author::class, 'index']);
+$routes->get('/libros', [Book::class, 'index']);
+$routes->get('/autores/crear', [Author::class, 'create']);
+$routes->get('/libros/crear', [Book::class, 'create']);
 
 /*
  * --------------------------------------------------------------------
