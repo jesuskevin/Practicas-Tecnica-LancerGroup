@@ -25,10 +25,6 @@ class Authors extends Migration
             'registration_date' => [
                 'type' => 'DATE',
             ],
-            'registered_books_qty' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
         ]);
         $this->forge->createTable('authors', true);
     }
