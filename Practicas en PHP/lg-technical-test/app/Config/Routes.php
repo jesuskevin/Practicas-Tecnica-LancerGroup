@@ -38,6 +38,10 @@ $routes->get('/', [Home::class, 'index'], ['as' => 'index']);
 $routes->get('/autores', [Author::class, 'index'], ['as' => 'authors.index']);
 $routes->get('/autores/crear', [Author::class, 'create'], ['as' => 'authors.create']);
 $routes->post('/autores/guardar', [Author::class, 'store'], ['as' => 'authors.store']);
+$routes->get('/autores/(:num)/detalles', [Author::class, 'show/$1'], ['as' => 'authors.show']);
+$routes->get('/autores/(:num)/editar', [Author::class, 'edit/$1'], ['as' => 'authors.edit']);
+$routes->post('/autores/(:num)/actualizar', [Author::class, 'update/$1'], ['as' => 'authors.update']);
+$routes->post('/autores/(:num)/eliminar', [Author::class, 'delete/$1'], ['as' => 'authors.delete']);
 
 $routes->get('/libros', [Book::class, 'index'], ['as' => 'books.index']);
 $routes->get('/libros/crear', [Book::class, 'create'], ['as' => 'books.create']);

@@ -81,4 +81,82 @@ class Author extends BaseController
             return redirect()->back()->with('error', 'Ha ocurrido un error, intente nuevamente en un momento o contacte a soporte si el problema persiste.');
         }
     }
+
+    public function show($id)
+    {
+        $data['author'] = $this->model->find($id);
+        return view('author/show/index', $data);
+    }
+
+    public function edit($id)
+    {
+        $data['author'] = $this->model->find($id);
+        return view('author/edit/index', $data);
+    }
+
+    public function update($id)
+    {
+        if (! $this->request->is('post') ) {
+            return redirect()->back();
+        }
+
+        //Get post data
+        $data = $this->request->getPost([
+            'first_name',
+            'last_name',
+            'country',
+        ]);
+
+        //validate data
+        if (! $this->validateData($data, [
+            'first_name' => [
+                'rules' => 'required|string|max_length[255]|min_length[3]',
+                'errors' => [
+                    'required' => 'El campo nombre es requerido.',
+                    'string' => 'El campo nombre debe de ser de tipo texto.',
+                    'max_length' => 'El campo nombre no debe se ser mayor a {param} caracteres.',
+                    'min_length' => 'El campo nombre no debe se ser menor a {param} caracteres.',
+                ]
+            ],
+            'last_name' => [
+                'rules' => 'required|string|max_length[255]|min_length[3]',
+                'errors' => [
+                    'required' => 'El campo apellido es requerido.',
+                    'string' => 'El campo apellido debe de ser de tipo texto.',
+                    'max_length' => 'El campo apellido no debe se ser mayor a {param} caracteres.',
+                    'min_length' => 'El campo apellido no debe se ser menor a {param} caracteres.',
+                ]
+            ],
+            'country' => [
+                'rules' => 'required|string|max_length[255]|min_length[2]',
+                'errors' => [
+                    'required' => 'El campo país es requerido.',
+                    'string' => 'El campo país debe de ser de tipo texto.',
+                    'max_length' => 'El campo país no debe se ser mayor a {param} caracteres.',
+                    'min_length' => 'El campo país no debe se ser menor a {param} caracteres.',
+                ]
+            ],
+        ])) {
+            return redirect()->back()->withInput();
+        }
+
+        try {
+            $this->model->update($id, $data);
+            return redirect('authors.index')->with('success', 'Autor actualizado con exito.');
+        } catch (\Exception $ex) {
+            log_message('error', $ex->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error, intente nuevamente en un momento o contacte a soporte si el problema persiste.');
+        }
+    }
+    
+    public function delete($id)
+    {
+        try {
+            $this->model->delete($id);
+            return redirect('authors.index')->with('success', 'Autor eliminado con exito.');
+        } catch (\Exception $ex) {
+            log_message('error', $ex->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error, intente nuevamente en un momento o contacte a soporte si el problema persiste.');
+        }
+    }
 }
