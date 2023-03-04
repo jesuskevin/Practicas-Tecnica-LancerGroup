@@ -13,17 +13,25 @@ class Authors extends Migration
             'first_name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
+                'null' => false,
             ],
             'last_name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
+                'null' => false,
             ],
             'country' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
+                'null' => false,
             ],
             'registration_date' => [
                 'type' => 'DATE',
+                'null' => false,
+            ],
+            'deleted_at' => [
+                'type' => 'DATE',
+                'null' => false,
             ],
         ]);
         $this->forge->createTable('authors', true);

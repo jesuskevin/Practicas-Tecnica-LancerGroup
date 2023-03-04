@@ -22,10 +22,10 @@ class AuthorModel extends Model
     ];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $createdField  = 'registration_date';
+    protected $updatedField  = '';
     protected $deletedField  = 'deleted_at';
 
     // Validation

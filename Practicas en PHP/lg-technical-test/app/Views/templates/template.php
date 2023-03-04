@@ -27,7 +27,10 @@
     <!-- summernote -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/summernote/summernote-bs4.min.css">
     <!-- datatables -->
-    <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
     <!-- bootstrap select -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 </head>
@@ -48,10 +51,10 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?php echo base_url(); ?>autores" class="nav-link <?php if (uri_string() === 'autores' || uri_string() === 'autores/crear'){echo 'active';} ?>">Autores</a>
+                    <a href="<?php echo url_to('authors.index'); ?>" class="nav-link <?php if (uri_string() === 'autores' || uri_string() === 'autores/crear'){echo 'active';} ?>">Autores</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?php echo base_url(); ?>libros" class="nav-link <?php if (uri_string() === 'libros' || uri_string() === 'libros/crear'){echo 'active';} ?>">Libros</a>
+                    <a href="<?php echo url_to('books.index'); ?>" class="nav-link <?php if (uri_string() === 'libros' || uri_string() === 'libros/crear'){echo 'active';} ?>">Libros</a>
                 </li>
             </ul>
         </nav>
@@ -60,7 +63,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="<?php echo base_url(); ?>" class="brand-link">
+            <a href="<?php echo url_to('index'); ?>" class="brand-link">
                 <img src="<?php echo base_url(); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">LG TECHNICAL TEST</span>
             </a>
@@ -81,13 +84,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url(); ?>autores" class="nav-link <?php if (uri_string() === 'autores' || uri_string() === 'autores/crear'){echo 'active';} ?>">
+                                    <a href="<?php echo url_to('authors.index'); ?>" class="nav-link <?php if (uri_string() === 'autores' || uri_string() === 'autores/crear'){echo 'active';} ?>">
                                         <i class="fas fa-users"></i>
                                         <p>Autores</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo base_url(); ?>libros" class="nav-link <?php if (uri_string() === 'libros' || uri_string() === 'libros/crear'){echo 'active';} ?>">
+                                    <a href="<?php echo url_to('books.index'); ?>" class="nav-link <?php if (uri_string() === 'libros' || uri_string() === 'libros/crear'){echo 'active';} ?>">
                                         <i class="fas fa-book"></i>
                                         <p>Libros</p>
                                     </a>
@@ -143,7 +146,15 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <!-- <script src="dist/js/pages/dashboard.js"></script> -->
     <!-- datatables js -->
-    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- bootstrap select js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 

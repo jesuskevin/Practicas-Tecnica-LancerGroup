@@ -13,10 +13,12 @@ class AuthorsBooks extends Migration
             'author_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
+                'null' => false,
             ],
             'book_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
+                'null' => false,
             ],
         ]);
         $this->forge->addForeignKey('author_id', 'authors', 'id', 'CASCADE', 'CASCADE');

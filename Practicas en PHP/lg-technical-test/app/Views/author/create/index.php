@@ -2,25 +2,32 @@
 
 <?php $this->section('content'); ?>
 
+<?php echo $this->include('templates/alert_success'); ?>
+<?php echo $this->include('templates/alert_error'); ?>
+
 <div class="d-flex mx-5">
     <div class="">
         <p class="display-4">Nuevo autor</p>
     </div>
 </div>
 
+<div class="text-danger">
+    <?php echo validation_list_errors(); ?>
+</div>
 <div class="row mx-5">
-    <form action="" method="POST">
+    <form action="<?php echo url_to('authors.store'); ?>" method="POST">
+        <?php echo csrf_field(); ?>
         <div class="form-group">
             <label for="firstName">Nombres <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="firstName" placeholder="Nombres" required>
+            <input type="text" name="first_name" value="<?php echo old('first_name'); ?>" required class="form-control" id="firstName" placeholder="Nombres">
         </div>
         <div class="form-group">
             <label for="lastName">Apellidos <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="lastName" placeholder="Apellidos" required>
+            <input type="text" name="last_name" value="<?php echo old('last_name'); ?>" required class="form-control" id="lastName" placeholder="Apellidos">
         </div>
         <div class="form-group">
             <label for="country">País <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="country" placeholder="País" required>
+            <input type="text" name="country" value="<?php echo old('country'); ?>" required class="form-control" id="country" placeholder="País">
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar</button>

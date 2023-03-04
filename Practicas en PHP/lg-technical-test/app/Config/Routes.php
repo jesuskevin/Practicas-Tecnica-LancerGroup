@@ -33,11 +33,15 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', [Home::class, 'index']);
-$routes->get('/autores', [Author::class, 'index']);
-$routes->get('/libros', [Book::class, 'index']);
-$routes->get('/autores/crear', [Author::class, 'create']);
-$routes->get('/libros/crear', [Book::class, 'create']);
+$routes->get('/', [Home::class, 'index'], ['as' => 'index']);
+
+$routes->get('/autores', [Author::class, 'index'], ['as' => 'authors.index']);
+$routes->get('/autores/crear', [Author::class, 'create'], ['as' => 'authors.create']);
+$routes->post('/autores/guardar', [Author::class, 'store'], ['as' => 'authors.store']);
+
+$routes->get('/libros', [Book::class, 'index'], ['as' => 'books.index']);
+$routes->get('/libros/crear', [Book::class, 'create'], ['as' => 'books.create']);
+$routes->post('/libros/guardar', [Book::class, 'store'], ['as' => 'books.store']);
 
 /*
  * --------------------------------------------------------------------

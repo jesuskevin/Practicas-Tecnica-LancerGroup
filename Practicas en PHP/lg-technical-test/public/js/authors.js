@@ -1,6 +1,12 @@
 const authors = {
     init() {
-        console.log('pagina de autores');
+        this.datatable();
+    },
+
+    datatable() {
+        $('#authorsTable').DataTable({
+            responsive: true,
+        });
     },
 }
 

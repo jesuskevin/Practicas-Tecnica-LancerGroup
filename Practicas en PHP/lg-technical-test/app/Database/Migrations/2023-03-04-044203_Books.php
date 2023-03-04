@@ -13,16 +13,16 @@ class Books extends Migration
             'book_name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
+                'null' => false,
             ],
             'publication_date' => [
                 'type' => 'DATE',
+                'null' => false,
             ],
             'edition' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-            ],
-            'deleted_at' => [
-                'type' => 'DATE',
+                'null' => false,
             ],
         ]);
         $this->forge->createTable('books', true);
