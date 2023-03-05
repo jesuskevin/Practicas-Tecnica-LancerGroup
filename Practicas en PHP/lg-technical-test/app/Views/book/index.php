@@ -7,27 +7,60 @@
         <p class="display-4">Libros</p>
     </div>
     <div class="">
-        <a href="<?php echo base_url() ?>libros/crear" class="btn bg-info mt-3">Nuevo libro</a>
+        <a href="<?php echo base_url() ?>libros/crear" class="btn bg-primary mt-3">Nuevo libro</a>
     </div>
 </div>
 
-<div class="row">
-    <table id="authorsTable" class="table mx-5">
+<div class="mx-5">
+    <table id="authorsTable" class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
+                <th>Titulo</th>
+                <th>Fecha de publicación</th>
+                <th>Edición</th>
+                <th>Accciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Row 1 Data 1</td>
-                <td>Row 1 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
+            <?php if ($books) : ?>
+                <?php foreach ($books as $book) : ?>
+                    <tr>
+                        <td><?php echo $book->book_name; ?></td>
+                        <td><?php echo $book->publication_date; ?></td>
+                        <td><?php echo $book->edition; ?></td>
+                        <td>
+                            <a href="<?php /*echo url_to('books.show', $book->id)*/ ?>" class="btn-sm btn-primary">Ver detalles</a>
+                            <a href="<?php /*echo url_to('books.edit', $book->id)*/ ?>" class="btn-sm btn-warning">Editar</a>
+                            <a href="#" data-toggle="modal" data-target="#deleteAuthorModal<?php /*echo $book->id*/ ?>" class="btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+
+                    <!-- Delete books modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteAuthorModal<?php echo $book->id ?>" tabindex="-1" aria-labelledby="deleteAuthorModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="<?php /*echo url_to('books.delete', $book->id)*/ ?>" method="post">
+                                    <?php echo csrf_field(); ?>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteAuthorModalLabel">Eliminar autor</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Estas seguro que deseas eleminar este autor?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif ?>
         </tbody>
     </table>
 </div>

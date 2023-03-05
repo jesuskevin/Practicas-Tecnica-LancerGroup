@@ -1,11 +1,7 @@
-const authors = {
+const books = {
     init() {
-        this.initializeSelect();
-    },
-
-    initializeSelect() {
-        $('#authors').select2({});
+        console.log('Pagina de libros...');
     },
 }
 
-export default authors;
+export default books;

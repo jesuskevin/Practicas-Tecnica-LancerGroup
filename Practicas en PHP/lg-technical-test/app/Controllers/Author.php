@@ -47,8 +47,8 @@ class Author extends BaseController
                 'errors' => [
                     'required' => 'El campo nombre es requerido.',
                     'string' => 'El campo nombre debe de ser de tipo texto.',
-                    'max_length' => 'El campo nombre no debe se ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo nombre no debe se ser menor a {param} caracteres.',
+                    'max_length' => 'El campo nombre no debe de ser mayor a {param} caracteres.',
+                    'min_length' => 'El campo nombre no debe de ser menor a {param} caracteres.',
                 ]
             ],
             'last_name' => [
@@ -56,8 +56,8 @@ class Author extends BaseController
                 'errors' => [
                     'required' => 'El campo apellido es requerido.',
                     'string' => 'El campo apellido debe de ser de tipo texto.',
-                    'max_length' => 'El campo apellido no debe se ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo apellido no debe se ser menor a {param} caracteres.',
+                    'max_length' => 'El campo apellido no debe de ser mayor a {param} caracteres.',
+                    'min_length' => 'El campo apellido no debe de ser menor a {param} caracteres.',
                 ]
             ],
             'country' => [
@@ -65,8 +65,8 @@ class Author extends BaseController
                 'errors' => [
                     'required' => 'El campo país es requerido.',
                     'string' => 'El campo país debe de ser de tipo texto.',
-                    'max_length' => 'El campo país no debe se ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo país no debe se ser menor a {param} caracteres.',
+                    'max_length' => 'El campo país no debe de ser mayor a {param} caracteres.',
+                    'min_length' => 'El campo país no debe de ser menor a {param} caracteres.',
                 ]
             ],
         ])) {
