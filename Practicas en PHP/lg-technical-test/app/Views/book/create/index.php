@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="edition">Edición <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" value="<?php echo old('edition') ?>" name="edition" id="edition" placeholder="Edición" required>
+            <input type="number" class="form-control" value="<?php echo old('edition') ?>" name="edition" id="edition" placeholder="Edición" required>
         </div>
         <div class="form-group">
             <label for="authors">Autores <span class="text-danger">*</span></label>

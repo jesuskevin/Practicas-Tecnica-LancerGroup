@@ -72,7 +72,7 @@ class Book extends BaseController
                 ]
             ],
             'edition' => [
-                'rules' => 'required|integer|max_length[255]|min_length[1]',
+                'rules' => 'required|integer|min_length[1]',
                 'errors' => [
                     'required' => 'El campo edición es requerido.',
                     'integer' => 'El campo edición debe de ser de tipo numerico.',
@@ -175,7 +175,7 @@ class Book extends BaseController
                 ]
             ],
             'edition' => [
-                'rules' => 'required|integer|max_length[255]|min_length[1]',
+                'rules' => 'required|integer|min_length[1]',
                 'errors' => [
                     'required' => 'El campo edición es requerido.',
                     'integer' => 'El campo edición debe de ser de tipo numerico.',
