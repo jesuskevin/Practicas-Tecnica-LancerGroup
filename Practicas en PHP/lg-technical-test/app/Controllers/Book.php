@@ -211,4 +211,15 @@ class Book extends BaseController
             return redirect()->back()->with('error', 'Ha ocurrido un error, intente nuevamente en un momento o contacte a soporte si el problema persiste.');
         }
     }
+
+    public function delete($id)
+    {
+        try {
+            $this->model->delete($id);
+            return redirect('books.index')->with('success', 'Libro eliminado con exito.');
+        } catch (\Exception $ex) {
+            log_message('error', $ex->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error, intente nuevamente en un momento o contacte a soporte si el problema persiste.');
+        }
+    }
 }

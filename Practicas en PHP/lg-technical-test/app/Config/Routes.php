@@ -49,6 +49,7 @@ $routes->post('/libros/guardar', [Book::class, 'store'], ['as' => 'books.store']
 $routes->get('/libros/(:num)/detalles', [Book::class, 'show/$1'], ['as' => 'books.show']);
 $routes->get('/libros/(:num)/editar', [Book::class, 'edit/$1'], ['as' => 'books.edit']);
 $routes->post('/libros/(:num)/actualizar', [Book::class, 'update/$1'], ['as' => 'books.update']);
+$routes->post('/libros/(:num)/eliminar', [Book::class, 'delete/$1'], ['as' => 'books.delete']);
 
 /*
  * --------------------------------------------------------------------

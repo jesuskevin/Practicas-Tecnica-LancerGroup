@@ -34,25 +34,25 @@
                         <td>
                             <a href="<?php echo url_to('books.show', $book->id) ?>" class="btn-sm btn-primary">Ver detalles</a>
                             <a href="<?php echo url_to('books.edit', $book->id) ?>" class="btn-sm btn-warning">Editar</a>
-                            <a href="#" data-toggle="modal" data-target="#deleteAuthorModal<?php /*echo $book->id*/ ?>" class="btn-sm btn-danger">Eliminar</a>
+                            <a href="#" data-toggle="modal" data-target="#deleteBookModal<?php echo $book->id ?>" class="btn-sm btn-danger">Eliminar</a>
                         </td>
                     </tr>
 
                     <!-- Delete books modal -->
                     <!-- Modal -->
-                    <div class="modal fade" id="deleteAuthorModal<?php echo $book->id ?>" tabindex="-1" aria-labelledby="deleteAuthorModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteBookModal<?php echo $book->id ?>" tabindex="-1" aria-labelledby="deleteBookModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form action="<?php /*echo url_to('books.delete', $book->id)*/ ?>" method="post">
+                                <form action="<?php echo url_to('books.delete', $book->id) ?>" method="post">
                                     <?php echo csrf_field(); ?>
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteAuthorModalLabel">Eliminar autor</h5>
+                                        <h5 class="modal-title" id="deleteBookModalLabel">Eliminar libro</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        ¿Estas seguro que deseas eleminar este autor?
+                                        ¿Estas seguro que deseas eleminar este libro?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
