@@ -33,7 +33,7 @@
                         <td><?php echo $book->edition; ?></td>
                         <td>
                             <a href="<?php echo url_to('books.show', $book->id) ?>" class="btn-sm btn-primary">Ver detalles</a>
-                            <a href="<?php /*echo url_to('books.edit', $book->id)*/ ?>" class="btn-sm btn-warning">Editar</a>
+                            <a href="<?php echo url_to('books.edit', $book->id) ?>" class="btn-sm btn-warning">Editar</a>
                             <a href="#" data-toggle="modal" data-target="#deleteAuthorModal<?php /*echo $book->id*/ ?>" class="btn-sm btn-danger">Eliminar</a>
                         </td>
                     </tr>
