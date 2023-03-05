@@ -18,7 +18,7 @@ class Author extends BaseController
     
     public function index()
     {
-        $data['authors'] = $this->model->orderBy('registration_date', 'DESC')->findAll();
+        $data['authors'] = $this->model->orderBy('registration_date', 'ASC')->findAll();
         return view('author/index', $data);
     }
 

@@ -13,6 +13,7 @@ class Book extends BaseController
     protected $model;
     protected $authorModel;
     protected $authorBookModel;
+    protected $db;
 
 
     public function __construct()
@@ -20,12 +21,13 @@ class Book extends BaseController
         $this->model = new BookModel();
         $this->authorModel = new AuthorModel();
         $this->authorBookModel = new AuthorBookModel();
+        $this->db = db_connect();
         helper('form');
     }
 
     public function index()
     {
-        $data['books'] = $this->model->orderBy('publication_date', 'DESC')->findAll();
+        $data['books'] = $this->model->orderBy('publication_date', 'ASC')->findAll();
         return view('book/index', $data);
     }
 
@@ -103,5 +105,18 @@ class Book extends BaseController
             log_message('error', $ex->getMessage());
             return redirect()->back()->with('error', 'Ha ocurrido un error, intente nuevamente en un momento o contacte a soporte si el problema persiste.');
         }
+    }
+
+    public function show($id)
+    {
+
+        $book = $this->model->find($id);
+        $builder = $this->db->table('authors')->select(['authors.first_name', 'authors.last_name']);
+        $builder->join('authors_books', 'authors_books.author_id = authors.id');
+        $builder->where('authors_books.book_id', $book->id);
+        $book->authors = $builder->get()->getResult();
+
+        $data['book'] = $book;
+        return view('book/show/index', $data);
     }
 }

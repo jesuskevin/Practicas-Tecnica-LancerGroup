@@ -1,6 +1,12 @@
 const books = {
     init() {
-        console.log('Pagina de libros...');
+        this.datatable();
+    },
+
+    datatable() {
+        $('#booksTable').DataTable({
+            responsive: true,
+        });
     },
 }
 

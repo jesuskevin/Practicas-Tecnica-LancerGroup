@@ -2,6 +2,9 @@
 
 <?php $this->section('content'); ?>
 
+<?php echo $this->include('templates/alert_success'); ?>
+<?php echo $this->include('templates/alert_error'); ?>
+
 <div class="d-flex justify-content-between mx-5">
     <div class="">
         <p class="display-4">Libros</p>
@@ -12,7 +15,7 @@
 </div>
 
 <div class="mx-5">
-    <table id="authorsTable" class="table table-bordered table-hover">
+    <table id="booksTable" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Titulo</th>
@@ -29,7 +32,7 @@
                         <td><?php echo $book->publication_date; ?></td>
                         <td><?php echo $book->edition; ?></td>
                         <td>
-                            <a href="<?php /*echo url_to('books.show', $book->id)*/ ?>" class="btn-sm btn-primary">Ver detalles</a>
+                            <a href="<?php echo url_to('books.show', $book->id) ?>" class="btn-sm btn-primary">Ver detalles</a>
                             <a href="<?php /*echo url_to('books.edit', $book->id)*/ ?>" class="btn-sm btn-warning">Editar</a>
                             <a href="#" data-toggle="modal" data-target="#deleteAuthorModal<?php /*echo $book->id*/ ?>" class="btn-sm btn-danger">Eliminar</a>
                         </td>
