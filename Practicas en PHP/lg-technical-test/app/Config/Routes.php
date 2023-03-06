@@ -35,21 +35,25 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', [Home::class, 'index'], ['as' => 'index']);
 
-$routes->get('/autores', [Author::class, 'index'], ['as' => 'authors.index']);
-$routes->get('/autores/crear', [Author::class, 'create'], ['as' => 'authors.create']);
-$routes->post('/autores/guardar', [Author::class, 'store'], ['as' => 'authors.store']);
-$routes->get('/autores/(:num)/detalles', [Author::class, 'show/$1'], ['as' => 'authors.show']);
-$routes->get('/autores/(:num)/editar', [Author::class, 'edit/$1'], ['as' => 'authors.edit']);
-$routes->post('/autores/(:num)/actualizar', [Author::class, 'update/$1'], ['as' => 'authors.update']);
-$routes->post('/autores/(:num)/eliminar', [Author::class, 'delete/$1'], ['as' => 'authors.delete']);
+$routes->group('autores', static function ($routes) {
+    $routes->get('/', [Author::class, 'index'], ['as' => 'authors.index']);
+    $routes->get('crear', [Author::class, 'create'], ['as' => 'authors.create']);
+    $routes->post('guardar', [Author::class, 'store'], ['as' => 'authors.store']);
+    $routes->get('(:num)/detalles', [Author::class, 'show/$1'], ['as' => 'authors.show']);
+    $routes->get('(:num)/editar', [Author::class, 'edit/$1'], ['as' => 'authors.edit']);
+    $routes->post('(:num)/actualizar', [Author::class, 'update/$1'], ['as' => 'authors.update']);
+    $routes->post('(:num)/eliminar', [Author::class, 'delete/$1'], ['as' => 'authors.delete']);
+});
 
-$routes->get('/libros', [Book::class, 'index'], ['as' => 'books.index']);
-$routes->get('/libros/crear', [Book::class, 'create'], ['as' => 'books.create']);
-$routes->post('/libros/guardar', [Book::class, 'store'], ['as' => 'books.store']);
-$routes->get('/libros/(:num)/detalles', [Book::class, 'show/$1'], ['as' => 'books.show']);
-$routes->get('/libros/(:num)/editar', [Book::class, 'edit/$1'], ['as' => 'books.edit']);
-$routes->post('/libros/(:num)/actualizar', [Book::class, 'update/$1'], ['as' => 'books.update']);
-$routes->post('/libros/(:num)/eliminar', [Book::class, 'delete/$1'], ['as' => 'books.delete']);
+$routes->group('libros', static function ($routes) {
+    $routes->get('/', [Book::class, 'index'], ['as' => 'books.index']);
+    $routes->get('crear', [Book::class, 'create'], ['as' => 'books.create']);
+    $routes->post('guardar', [Book::class, 'store'], ['as' => 'books.store']);
+    $routes->get('(:num)/detalles', [Book::class, 'show/$1'], ['as' => 'books.show']);
+    $routes->get('(:num)/editar', [Book::class, 'edit/$1'], ['as' => 'books.edit']);
+    $routes->post('(:num)/actualizar', [Book::class, 'update/$1'], ['as' => 'books.update']);
+    $routes->post('(:num)/eliminar', [Book::class, 'delete/$1'], ['as' => 'books.delete']);
+});
 
 /*
  * --------------------------------------------------------------------
