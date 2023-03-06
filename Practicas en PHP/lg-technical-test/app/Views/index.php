@@ -22,14 +22,14 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3><?php echo $registered_authors_qty ?></h3>
 
                         <p>Autores registrados</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <a href="<?php echo base_url(); ?>autores" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo url_to('authors.index'); ?>" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -37,14 +37,14 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>53</h3>
+                        <h3><?php echo $registered_books_qty ?></h3>
 
                         <p>Libros registrados</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-book"></i>
                     </div>
-                    <a href="<?php echo base_url(); ?>libros" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo url_to('books.index'); ?>libros" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
