@@ -32,7 +32,7 @@
             </div>
             <div class="">
                 <h5 class="font-weight-bold"><li>Cantidad de libros registrados:</li></h5>
-                <p><?php echo 50 ?></p>
+                <p><?php echo $author->books_qty; ?></p>
             </div>
         </div>
     </div>

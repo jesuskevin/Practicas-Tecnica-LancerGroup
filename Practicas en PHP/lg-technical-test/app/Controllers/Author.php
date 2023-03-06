@@ -9,10 +9,12 @@ class Author extends BaseController
 {
 
     protected $model;
+    protected $db;
 
     public function __construct()
     {
         $this->model = new AuthorModel();
+        $this->db = db_connect();
         helper('form');
     }
     
@@ -84,7 +86,13 @@ class Author extends BaseController
 
     public function show($id)
     {
-        $data['author'] = $this->model->find($id);
+        $author = $this->model->find($id);
+        $builder = $this->db->table('books')->select(['books.id']);
+        $builder->join('authors_books', 'authors_books.book_id = books.id');
+        $builder->where('authors_books.author_id', $author->id);
+        $author->books_qty = count($builder->get()->getResult());
+
+        $data['author'] = $author;
         return view('author/show/index', $data);
     }
 
