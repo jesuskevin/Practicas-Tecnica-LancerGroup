@@ -29,7 +29,7 @@
                 <?php foreach ($books as $book) : ?>
                     <tr>
                         <td><?php echo $book->book_name; ?></td>
-                        <td><?php echo $book->publication_date; ?></td>
+                        <td><?php echo date('d/m/Y', strtotime($book->publication_date)); ?></td>
                         <td><?php echo $book->edition; ?></td>
                         <td>
                             <a href="<?php echo url_to('books.show', $book->id) ?>" class="btn-sm btn-primary">Ver detalles</a>

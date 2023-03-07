@@ -17,7 +17,7 @@
             </div>
             <div class="">
                 <h5 class="font-weight-bold"><li>Fecha de publicación:</li></h5>
-                <p><?php echo $book->publication_date ?></p>
+                <p><?php echo date('d/m/Y', strtotime($book->publication_date)); ?></p>
             </div>
             <div class="">
                 <h5 class="font-weight-bold"><li>Edición:</li></h5>

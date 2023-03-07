@@ -28,7 +28,7 @@
             </div>
             <div class="">
                 <h5 class="font-weight-bold"><li>Fecha de registro:</li></h5>
-                <p><?php echo $author->registration_date ?></p>
+                <p><?php echo date('d/m/Y', strtotime($author->registration_date)); ?></p>
             </div>
             <div class="">
                 <h5 class="font-weight-bold"><li>Cantidad de libros registrados:</li></h5>
