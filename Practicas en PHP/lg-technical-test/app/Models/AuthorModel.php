@@ -29,8 +29,31 @@ class AuthorModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
+    protected $validationRules = [
+        'first_name' => 'required|string|max_length[255]|min_length[3]',
+        'last_name' => 'required|string|max_length[255]|min_length[3]',
+        'country' => 'required|string|max_length[255]|min_length[2]',
+    ];
+    protected $validationMessages   = [
+        'first_name' => [
+            'required' => 'El campo nombre es requerido.',
+            'string' => 'El campo nombre debe de ser de tipo texto.',
+            'max_length' => 'El campo nombre no debe de ser mayor a {param} caracteres.',
+            'min_length' => 'El campo nombre no debe de ser menor a {param} caracteres.',
+        ],
+        'last_name' => [
+            'required' => 'El campo apellido es requerido.',
+            'string' => 'El campo apellido debe de ser de tipo texto.',
+            'max_length' => 'El campo apellido no debe de ser mayor a {param} caracteres.',
+            'min_length' => 'El campo apellido no debe de ser menor a {param} caracteres.',
+        ],
+        'country' => [
+            'required' => 'El campo país es requerido.',
+            'string' => 'El campo país debe de ser de tipo texto.',
+            'max_length' => 'El campo país no debe de ser mayor a {param} caracteres.',
+            'min_length' => 'El campo país no debe de ser menor a {param} caracteres.',
+        ],
+    ];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 

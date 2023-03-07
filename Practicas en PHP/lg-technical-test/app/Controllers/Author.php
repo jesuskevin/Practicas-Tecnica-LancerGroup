@@ -42,41 +42,10 @@ class Author extends BaseController
             'country',
         ]);
 
-        //validate data
-        if (! $this->validateData($data, [
-            'first_name' => [
-                'rules' => 'required|string|max_length[255]|min_length[3]',
-                'errors' => [
-                    'required' => 'El campo nombre es requerido.',
-                    'string' => 'El campo nombre debe de ser de tipo texto.',
-                    'max_length' => 'El campo nombre no debe de ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo nombre no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-            'last_name' => [
-                'rules' => 'required|string|max_length[255]|min_length[3]',
-                'errors' => [
-                    'required' => 'El campo apellido es requerido.',
-                    'string' => 'El campo apellido debe de ser de tipo texto.',
-                    'max_length' => 'El campo apellido no debe de ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo apellido no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-            'country' => [
-                'rules' => 'required|string|max_length[255]|min_length[2]',
-                'errors' => [
-                    'required' => 'El campo país es requerido.',
-                    'string' => 'El campo país debe de ser de tipo texto.',
-                    'max_length' => 'El campo país no debe de ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo país no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-        ])) {
-            return redirect()->back()->withInput();
-        }
-
         try {
-            $this->model->save($data);
+            if (!$this->model->save($data)) {
+                return redirect()->back()->with('validationErrors', $this->model->errors());
+            }
             return redirect('authors.index')->with('success', 'Autor creado con exito.');
         } catch (\Exception $ex) {
             log_message('error', $ex->getMessage());
@@ -115,41 +84,10 @@ class Author extends BaseController
             'country',
         ]);
 
-        //validate data
-        if (! $this->validateData($data, [
-            'first_name' => [
-                'rules' => 'required|string|max_length[255]|min_length[3]',
-                'errors' => [
-                    'required' => 'El campo nombre es requerido.',
-                    'string' => 'El campo nombre debe de ser de tipo texto.',
-                    'max_length' => 'El campo nombre no debe se ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo nombre no debe se ser menor a {param} caracteres.',
-                ]
-            ],
-            'last_name' => [
-                'rules' => 'required|string|max_length[255]|min_length[3]',
-                'errors' => [
-                    'required' => 'El campo apellido es requerido.',
-                    'string' => 'El campo apellido debe de ser de tipo texto.',
-                    'max_length' => 'El campo apellido no debe se ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo apellido no debe se ser menor a {param} caracteres.',
-                ]
-            ],
-            'country' => [
-                'rules' => 'required|string|max_length[255]|min_length[2]',
-                'errors' => [
-                    'required' => 'El campo país es requerido.',
-                    'string' => 'El campo país debe de ser de tipo texto.',
-                    'max_length' => 'El campo país no debe se ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo país no debe se ser menor a {param} caracteres.',
-                ]
-            ],
-        ])) {
-            return redirect()->back()->withInput();
-        }
-
         try {
-            $this->model->update($id, $data);
+            if (!$this->model->update($id, $data)) {
+                return redirect()->back()->with('validationErrors', $this->model->errors());
+            }
             return redirect('authors.index')->with('success', 'Autor actualizado con exito.');
         } catch (\Exception $ex) {
             log_message('error', $ex->getMessage());

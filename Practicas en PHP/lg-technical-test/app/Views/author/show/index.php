@@ -15,11 +15,11 @@
     <div class="card">
         <div class="card-body">
             <div class="">
-                <h5 class="font-weight-bold"><li>Nombre:</li></h5>
+                <h5 class="font-weight-bold"><li>Nombres:</li></h5>
                 <p><?php echo $author->first_name ?></p>
             </div>
             <div class="">
-                <h5 class="font-weight-bold"><li>Apellido:</li></h5>
+                <h5 class="font-weight-bold"><li>Apellidos:</li></h5>
                 <p><?php echo $author->last_name ?></p>
             </div>
             <div class="">

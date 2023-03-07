@@ -51,49 +51,10 @@ class Book extends BaseController
             'authors',
         ]);
 
-        //validate data
-        if (!$this->validateData($data, [
-            'book_name' => [
-                'rules' => 'required|string|max_length[255]|min_length[3]',
-                'errors' => [
-                    'required' => 'El campo titulo es requerido.',
-                    'string' => 'El campo titulo debe de ser de tipo texto.',
-                    'max_length' => 'El campo titulo no debe de ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo titulo no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-            'publication_date' => [
-                'rules' => 'required|string|max_length[255]|min_length[3]',
-                'errors' => [
-                    'required' => 'El campo fecha de publicación es requerido.',
-                    'string' => 'El campo fecha de publicación debe de ser de tipo texto.',
-                    'max_length' => 'El campo fecha de publicación no debe de ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo fecha de publicación no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-            'edition' => [
-                'rules' => 'required|integer|min_length[1]',
-                'errors' => [
-                    'required' => 'El campo edición es requerido.',
-                    'integer' => 'El campo edición debe de ser de tipo numerico.',
-                    'max_length' => 'El campo edición no debe se ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo edición no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-            'authors.*' => [
-                'rules' => 'required|integer|min_length[1]',
-                'errors' => [
-                    'required' => 'El campo autores es requerido.',
-                    'integer' => 'El campo autores debe de ser de tipo numerico',
-                    'min_length' => 'El campo autores no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-        ])) {
-            return redirect()->back()->withInput();
-        }
-
         try {
-            $book = $this->model->insert($data);
+            if (!$book = $this->model->insert($data)) {
+                return redirect()->back()->with('validationErrors', $this->model->errors());
+            }
             foreach ($data['authors'] as $author) { // save author id and book id in the pivot table
                 $this->authorBookModel->save([
                     'author_id' => $author,
@@ -154,51 +115,11 @@ class Book extends BaseController
             'authors',
         ]);
 
-        //validate data
-        if (!$this->validateData($data, [
-            'book_name' => [
-                'rules' => 'required|string|max_length[255]|min_length[3]',
-                'errors' => [
-                    'required' => 'El campo titulo es requerido.',
-                    'string' => 'El campo titulo debe de ser de tipo texto.',
-                    'max_length' => 'El campo titulo no debe de ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo titulo no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-            'publication_date' => [
-                'rules' => 'required|string|max_length[255]|min_length[3]',
-                'errors' => [
-                    'required' => 'El campo fecha de publicación es requerido.',
-                    'string' => 'El campo fecha de publicación debe de ser de tipo texto.',
-                    'max_length' => 'El campo fecha de publicación no debe de ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo fecha de publicación no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-            'edition' => [
-                'rules' => 'required|integer|min_length[1]',
-                'errors' => [
-                    'required' => 'El campo edición es requerido.',
-                    'integer' => 'El campo edición debe de ser de tipo numerico.',
-                    'max_length' => 'El campo edición no debe se ser mayor a {param} caracteres.',
-                    'min_length' => 'El campo edición no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-            'authors.*' => [
-                'rules' => 'required|integer|min_length[1]',
-                'errors' => [
-                    'required' => 'El campo autores es requerido.',
-                    'integer' => 'El campo autores debe de ser de tipo numerico',
-                    'min_length' => 'El campo autores no debe de ser menor a {param} caracteres.',
-                ]
-            ],
-        ])) {
-            return redirect()->back()->withInput();
-        }
-
         try {
-            //Detach all the authors first and attach it again, do not matter if there are news or not
-            $this->authorBookModel->where('book_id', $id)->delete();
-            $book = $this->model->update($id, $data);
+            if (!$this->model->update($id, $data)) {
+                return redirect()->back()->with('validationErrors', $this->model->errors());
+            }
+            $this->authorBookModel->where('book_id', $id)->delete(); //Detach all the authors first and attach it again, do not matter if there are news or not
             foreach ($data['authors'] as $author) { // save author id and book id in the pivot table
                 $this->authorBookModel->save([
                     'author_id' => $author,

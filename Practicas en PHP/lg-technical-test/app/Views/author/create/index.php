@@ -11,9 +11,7 @@
     </div>
 </div>
 
-<div class="text-danger">
-    <?php echo validation_list_errors(); ?>
-</div>
+<?php echo $this->include('templates/validation_errors'); ?>
 <div class="row mx-5">
     <form action="<?php echo url_to('authors.store'); ?>" method="POST">
         <?php echo csrf_field(); ?>
